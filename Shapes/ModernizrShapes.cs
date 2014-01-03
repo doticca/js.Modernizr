@@ -28,7 +28,7 @@ namespace js.Modernizr.Shapes
 
 
                     var currentModernizr = scripts
-                            .Where(l => l.Name == "Modernizr" || l.Name == "ModernizrCustom")
+                            .Where(l => l.Name == "Modernizr")
                             .FirstOrDefault();
 
                     if (currentModernizr == null)
