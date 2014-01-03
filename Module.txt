@@ -5,6 +5,5 @@ Author: Fotis G. Pappas (fotisgpap)
 Website: http://www.grapto.com
 Version: 2.7.1
 OrchardVersion: 1.7.2
-Description: The js.Modernizr module contains the Modernizr.js and related script libraries.
-FeatureDescription: A common location for Modernizr.js and related script libraries for Orchard Project.
+Description: The js.Modernizr module contains the Modernizr.js and related script libraries. Module auto enables modernizr everywhere, even admin pages.
 Category: Javascript
