@@ -38,7 +38,6 @@ namespace js.Modernizr.Shapes
                     var resourceManager = _workContext.Value.Resolve<IResourceManager>();
                     var scripts = resourceManager.GetRequiredResources("script");
 
-
                     var currentModernizr = scripts
                             .Where(l => l.Name == "Modernizr")
                             .FirstOrDefault();

@@ -14,7 +14,7 @@ using System.Security;
 
 [assembly: Guid("C5E2E770-1B51-4E93-A089-928E847107B7")]
 
-[assembly: AssemblyVersion("2.7.1.2")]
-[assembly: AssemblyFileVersion("2.7.1.2")]
+[assembly: AssemblyVersion("2.7.1.3")]
+[assembly: AssemblyFileVersion("2.7.1.3")]
 
 [assembly: AssemblyCompanyAttribute("Team Grapto (tweet: @teamgrapto)")]
