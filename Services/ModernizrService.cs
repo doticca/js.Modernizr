@@ -12,6 +12,8 @@ namespace js.Modernizr.Services
     public interface IModernizrService : IDependency
     {
         string GetModernizrUrl();
+        bool GetAutoEnable();
+        bool GetAutoEnableAdmin();
         IEnumerable<string> GetModernizrSuggestions();
     }
 
@@ -46,6 +48,39 @@ namespace js.Modernizr.Services
                                                   .ContentItem
                                                   .Get(typeof(ModernizrSettingsPart));
                     return modernizrSettings.ModernizrUrl;
+                });
+        }
+        public bool GetAutoEnable()
+        {
+            return _cacheManager.Get(
+                "js.Modernizr.AutoEnable",
+                ctx =>
+                {
+                    ctx.Monitor(_signals.When("js.Modernizr.Changed"));
+                    WorkContext workContext = _wca.GetContext();
+                    var modernizrSettings =
+                        (ModernizrSettingsPart)workContext
+                                                  .CurrentSite
+                                                  .ContentItem
+                                                  .Get(typeof(ModernizrSettingsPart));
+                    return modernizrSettings.AutoEnable;
+                });
+        }
+
+        public bool GetAutoEnableAdmin()
+        {
+            return _cacheManager.Get(
+                "js.Modernizr.AutoEnableAdmin",
+                ctx =>
+                {
+                    ctx.Monitor(_signals.When("js.Modernizr.Changed"));
+                    WorkContext workContext = _wca.GetContext();
+                    var modernizrSettings =
+                        (ModernizrSettingsPart)workContext
+                                                  .CurrentSite
+                                                  .ContentItem
+                                                  .Get(typeof(ModernizrSettingsPart));
+                    return modernizrSettings.AutoEnableAdmin;
                 });
         }
 

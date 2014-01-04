@@ -1,9 +1,10 @@
 ﻿Name: Modernizr
 Path: js.Modernizr
 AntiForgery: enabled
-Author: Fotis G. Pappas (fotisgpap)
+Author: Team Grapto (tweet: @teamgrapto)
 Website: http://www.grapto.com
-Version: 2.7.1.1
+Version: 2.7.1.2
 OrchardVersion: 1.7.2
-Description: The js.Modernizr module contains the Modernizr.js and related script libraries. Module auto enables modernizr everywhere, even admin pages.
-Category: Javascript
+Description: The js.Modernizr module contains the Modernizr.js and related script libraries.
+FeatureDescription: A common location for Modernizr.js and related script libraries for Orchard Project.
+Category: Developer

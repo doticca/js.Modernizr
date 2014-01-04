@@ -16,6 +16,13 @@ namespace js.Modernizr.Handlers
             T = NullLocalizer.Instance;
             Filters.Add(StorageFilter.For(repository));
             Filters.Add(new ActivatingFilter<ModernizrSettingsPart>("Site"));
+
+            OnInitializing<ModernizrSettingsPart>((context, part) =>
+            {
+                part.AutoEnable = true;
+                part.AutoEnableAdmin = true;
+                part.ModernizrUrl = string.Empty;
+            });
         }
 
         public Localizer T { get; set; }

@@ -4,17 +4,19 @@ using Orchard.DisplayManagement.Descriptors;
 using Orchard.Environment.Extensions;
 using Orchard.UI.Resources;
 using js.Modernizr.Services;
+using Orchard.Environment;
+using Orchard.UI.Admin;
 
 
 namespace js.Modernizr.Shapes
 {
     public class ModernizrShapes : IShapeTableProvider
     {
-        private readonly IWorkContextAccessor _wca;
+        private readonly Work<WorkContext> _workContext;
         private readonly IModernizrService _modernizrService;
-        public ModernizrShapes(IWorkContextAccessor wca, IModernizrService modernizrService)
+        public ModernizrShapes(Work<WorkContext> workContext, IModernizrService modernizrService)
         {
-            _wca = wca;
+            _workContext = workContext;
             _modernizrService = modernizrService;
         }
 
@@ -23,7 +25,17 @@ namespace js.Modernizr.Shapes
             builder.Describe("HeadScripts")
                 .OnDisplaying(shapeDisplayingContext =>
                 {
-                    var resourceManager = _wca.GetContext().Resolve<IResourceManager>();
+                    if (!_modernizrService.GetAutoEnable()) return;
+                    if (!_modernizrService.GetAutoEnableAdmin())
+                    {
+                        var request = _workContext.Value.HttpContext.Request;
+                        if (AdminFilter.IsApplied(request.RequestContext))
+                        {
+                            return;
+                        }
+                    }
+
+                    var resourceManager = _workContext.Value.Resolve<IResourceManager>();
                     var scripts = resourceManager.GetRequiredResources("script");
 
 

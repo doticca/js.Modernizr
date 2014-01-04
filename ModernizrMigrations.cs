@@ -17,5 +17,13 @@ namespace js.Modernizr
                 );
             return 1;
         }
+        public int UpdateFrom1()
+        {
+            SchemaBuilder.AlterTable("ModernizrSettingsPartRecord", table => table
+                .AddColumn<bool>("AutoEnable", c => c.WithDefault(true)));
+            SchemaBuilder.AlterTable("ModernizrSettingsPartRecord", table => table
+                .AddColumn<bool>("AutoEnableAdmin", c => c.WithDefault(true)));
+            return 2;
+        }
     }
 }

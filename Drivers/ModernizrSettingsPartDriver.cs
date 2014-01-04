@@ -36,6 +36,8 @@ namespace js.Modernizr.Drivers
                                    Model: new ModernizrSettingsViewModel
                                    {
                                        ModernizrUrl = part.ModernizrUrl,
+                                       AutoEnable = part.AutoEnable,
+                                       AutoEnableAdmin = part.AutoEnableAdmin,
                                        ModernizrUrlSuggestions = modernizrSuggestions
                                    },
                                    Prefix: Prefix)).OnGroup("Modernizr");
@@ -50,12 +52,30 @@ namespace js.Modernizr.Drivers
 
         protected override void Exporting(ModernizrSettingsPart part, ExportContentContext context)
         {
-            context.Element(part.PartDefinition.Name).SetAttributeValue("ModernizrUrl", part.Record.ModernizrUrl);
+            var element = context.Element(part.PartDefinition.Name);
+
+            element.SetAttributeValue("ModernizrUrl", part.ModernizrUrl);
+            element.SetAttributeValue("AutoEnable", part.AutoEnable);
+            element.SetAttributeValue("AutoEnableAdmin", part.AutoEnableAdmin);
         }
 
         protected override void Importing(ModernizrSettingsPart part, ImportContentContext context)
         {
-            part.Record.ModernizrUrl = context.Attribute(part.PartDefinition.Name, "ModernizrUrl");
+            var partName = part.PartDefinition.Name;
+
+            part.Record.ModernizrUrl = GetAttribute<string>(context, partName, "ModernizrUrl");
+            part.Record.AutoEnable = GetAttribute<bool>(context, partName, "AutoEnable");
+            part.Record.AutoEnableAdmin = GetAttribute<bool>(context, partName, "AutoEnableAdmin");
+        }
+
+        private TV GetAttribute<TV>(ImportContentContext context, string partName, string elementName)
+        {
+            string value = context.Attribute(partName, elementName);
+            if (value != null)
+            {
+                return (TV)Convert.ChangeType(value, typeof(TV));
+            }
+            return default(TV);
         }
     }
 }
