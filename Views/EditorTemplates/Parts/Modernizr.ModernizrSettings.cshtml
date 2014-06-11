@@ -1,0 +1,58 @@
+﻿@using js.Modernizr.ViewModels;
+@model ModernizrSettingsViewModel
+
+<fieldset class="modernizr">
+    <legend>@T("Modernizr")</legend>
+    <div>
+        <label for="ModernizrUrl">@T("Modernizr URL")</label>
+        <div>
+            @Html.TextBoxFor(m => m.ModernizrUrl, new { @class = "textMedium", @readonly = "readonly" })
+            <button onclick="document.getElementById('@Html.FieldIdFor(m => m.ModernizrUrl)').value = ''">Default</button>
+        </div>
+        <span class="hint">Leave empty for default Modernizr (2.7.1) Full options. Or select a script from suggestions.</span>
+        <span class="hint">To create a custom version of modernizr script, visit <a href="http://modernizr.com/download/">http://modernizr.com/download/</a>.</span>
+
+        @Html.ValidationMessage("ModernizrUrl", "*")
+        @if (Model.ModernizrUrlSuggestions != null &&
+            Model.ModernizrUrlSuggestions.Any())
+        {
+            <label>Suggestions:</label>            
+            <ul>
+                @foreach (var suggestion in Model.ModernizrUrlSuggestions)
+                {
+                    <li style="cursor:pointer;"
+                        onclick="document.getElementById('@Html.FieldIdFor(m => m.ModernizrUrl)').value='@suggestion'">
+                        <p>@suggestion</p>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <span class="hint">@T("Upload modernizr script files into a folder named 'scripts' in the Media module. <br>Modernizr script file name should include the 'moderniz' string e.g. modernizr.custom.5716.js")</span>
+        }
+    </div>
+    <br />
+    <div>
+        @Html.EditorFor(m => m.AutoEnable)
+        <label class="forcheckbox" for="ModernizrSettings_AutoEnable">@T("Auto Enable")</label>
+        <span class="hint">@T("it enables modernizr script on every page header.")</span>
+    </div>
+    <div data-controllerid="ModernizrSettings_AutoEnable" data-defaultstate="visible">
+        @Html.EditorFor(m => m.AutoEnableAdmin)
+        <label class="forcheckbox" for="ModernizrSettings_AutoEnableAdmin">@T("Auto Enable Admin")</label>
+        <span class="hint">@T("it enables modernizr script on admin pages header.")</span>
+    </div>
+</fieldset>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        // hack to make the base.js script work with controller ids
+        (function ($) {
+            $(document).ready(function () {
+                $(".modernizr").find("input[name='ModernizrSettings.AutoEnable']").click().click();
+            });
+        })(jQuery);
+    </script>
+}
