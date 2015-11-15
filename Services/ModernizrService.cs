@@ -88,7 +88,7 @@ namespace js.Modernizr.Services
         {
             List<string> modernizrSuggestions = null;
             var rootMediaFolders = _mediaService
-                .GetMediaFolders(".")
+                .GetMediaFolders(null)
                 .Where(f => f.Name.Equals(ScriptsFolder, StringComparison.OrdinalIgnoreCase));
             if (rootMediaFolders.Any())
             {

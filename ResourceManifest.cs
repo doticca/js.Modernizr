@@ -7,8 +7,8 @@ namespace js.Modernizr {
 
             // defaults at full modernizr
             manifest.DefineScript("Modernizr")
-                .SetUrl("modernizr.2.7.1.min.js")                
-                .SetVersion("2.7.1");
+                .SetUrl("modernizr.2.8.3.min.js")                
+                .SetVersion("2.8.3");
         }
     }
 }

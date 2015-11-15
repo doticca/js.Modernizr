@@ -3,8 +3,8 @@ Path: js.Modernizr
 AntiForgery: enabled
 Author: Team Grapto (tweet: @teamgrapto)
 Website: https://github.com/grapto/js.Modernizr
-Version: 2.7.1.3
-OrchardVersion: 1.7.2
+Version: 2.8.3
+OrchardVersion: 1.8.1
 Description: The js.Modernizr module contains the Modernizr.js and related script libraries.
-FeatureDescription: A common location for Modernizr.js and related script libraries for Orchard Project.
+FeatureDescription: Modernizr tells you what HTML, CSS and JavaScript features the user’s browser has to offer.
 Category: Developer
